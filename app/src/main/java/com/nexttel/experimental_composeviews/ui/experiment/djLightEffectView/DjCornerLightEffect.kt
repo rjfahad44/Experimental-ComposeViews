@@ -15,75 +15,122 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.Path
 import kotlin.math.cos
 import kotlin.math.sin
 
+
 @Composable
-fun DjCornerLightEffect(
+fun DjLightStageEffect(
     modifier: Modifier = Modifier,
-    beamColorList: List<Color> = listOf(Color.Red, Color.Green, Color.Blue, Color.Magenta),
-    beamWidth: Float = 5f,
-    beamCount: Int = 4,
-    beamLengthFactor: Float = 1.5f,
-    rotationSpeed: Float = 30f,
-    content: @Composable BoxScope.() -> Unit
+    beamColorList: List<Color> = listOf(
+        Color(0xFF00FFFF),
+        Color(0xFFFF00FF),
+        Color(0xFFFFFF00),
+        Color(0xFF00FF00),
+        Color(0xFFFF0000),
+        Color(0xFF0000FF)
+    ),
+    beamWidth: Float = 60f,
+    beamLengthFactor: Float = 1.8f,
+    beamCount: Int = 3,
+    rotationRange: Float = 20f,
+    rotationSpeed: Float = 25f,
+    content: @Composable BoxScope.() -> Unit = {},
 ) {
-    val infiniteTransition = rememberInfiniteTransition(label = "corner_light_anim")
-    val rotationAngle = infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 360f,
+    val infiniteTransition = rememberInfiniteTransition(label = "dj_real_light")
+    val rotationAnim = infiniteTransition.animateFloat(
+        initialValue = -rotationRange,
+        targetValue = rotationRange,
         animationSpec = infiniteRepeatable(
-            animation = tween((360 / rotationSpeed * 1000).toInt(), easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
-        ), label = "corner_rotation"
+            animation = tween((1000 * 60 / rotationSpeed).toInt(), easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ), label = "light_rotation_anim"
     )
 
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
         Canvas(modifier = Modifier.matchParentSize()) {
-            val size = size
-            val corners = listOf(
-                Offset(0f, 0f), // Top-left
-                Offset(size.width, 0f), // Top-right
-                Offset(0f, size.height), // Bottom-left
-                Offset(size.width, size.height) // Bottom-right
-            )
+            val canvasSize = size
+            val beamLength = canvasSize.minDimension * beamLengthFactor
 
-            for ((index, corner) in corners.withIndex()) {
-                for (i in 0 until beamCount) {
-                    val angleOffset = (360f / beamCount) * i + rotationAngle.value + (index * 90)
-                    val radians = Math.toRadians(angleOffset.toDouble())
-                    val radius = size.minDimension * beamLengthFactor
+            val topLeft = Offset(0f, 0f)
+            val topRight = Offset(canvasSize.width, 0f)
 
-                    val endX = corner.x + cos(radians) * radius
-                    val endY = corner.y + sin(radians) * radius
+            val drawBeam = { start: Offset, angle: Float, color: Color ->
+                val rad = Math.toRadians(angle.toDouble())
+                val direction = Offset(cos(rad).toFloat(), sin(rad).toFloat())
+                val end = start + direction * beamLength
 
-                    val color = beamColorList[(i + index) % beamColorList.size]
+                val distance = (end - start).getDistance()
+                val normalizedDistance = (distance / beamLength).coerceIn(0f, 1f)
 
-                    drawLine(
-                        color = color,
-                        start = corner,
-                        end = Offset(endX.toFloat(), endY.toFloat()),
-                        strokeWidth = beamWidth,
-                        alpha = 0.4f,
-                        cap = StrokeCap.Round
-                    )
+                // Dynamic widths
+                val startWidth = beamWidth * 0.4f
+                val endWidth = beamWidth * 1.4f
 
-                    // Light glow
-                    drawCircle(
-                        brush = Brush.radialGradient(
-                            colors = listOf(color.copy(alpha = 0.3f), Color.Transparent),
-                            center = corner,
-                            radius = size.minDimension * 0.25f
-                        ),
-                        center = corner,
-                        radius = size.minDimension * 0.25f
-                    )
+                // Perpendicular vector for width offset
+                val perpendicular = Offset(-direction.y, direction.x)
+
+                val startLeft = start + perpendicular * (startWidth / 2)
+                val startRight = start - perpendicular * (startWidth / 2)
+                val endLeft = end + perpendicular * (endWidth / 2)
+                val endRight = end - perpendicular * (endWidth / 2)
+
+                val path = Path().apply {
+                    moveTo(startLeft.x, startLeft.y)
+                    lineTo(endLeft.x, endLeft.y)
+                    lineTo(endRight.x, endRight.y)
+                    lineTo(startRight.x, startRight.y)
+                    close()
                 }
+
+                // Draw trapezoid beam
+                drawPath(
+                    path = path,
+                    brush = Brush.linearGradient(
+                        colors = listOf(color.copy(alpha = 0.4f), color.copy(alpha = 0f)),
+                        start = start,
+                        end = end
+                    )
+                )
+
+                // Optional: glowing end circle
+                val minRadius = beamWidth * 0.6f
+                val maxRadius = beamWidth * 2.5f
+                val dynamicGlowRadius = minRadius + (maxRadius - minRadius) * normalizedDistance
+
+                drawCircle(
+                    brush = Brush.radialGradient(
+                        colors = listOf(color.copy(alpha = 0.45f), Color.Transparent),
+                        center = end,
+                        radius = dynamicGlowRadius
+                    ),
+                    center = end,
+                    radius = dynamicGlowRadius
+                )
+            }
+
+
+
+            for (i in 0 until beamCount) {
+                val spacing = 12f // Angle spacing between beams
+                val baseAngle = rotationAnim.value
+                val spreadAngle = baseAngle + (i - beamCount / 2f) * spacing
+
+                val color = beamColorList[i % beamColorList.size]
+
+                // Left side beam
+                drawBeam(topLeft, 45f + spreadAngle, color)
+
+                // Right side beam
+                drawBeam(topRight, 135f - spreadAngle, color)
             }
         }
 
-        // ✅ Your custom content composable inside the light box
+        // Content inside stage
         content()
     }
 }
+
+
+

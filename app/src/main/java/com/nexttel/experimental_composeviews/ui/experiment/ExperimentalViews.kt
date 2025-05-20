@@ -1,6 +1,5 @@
 package com.nexttel.experimental_composeviews.ui.experiment
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,15 +9,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.nexttel.experimental_composeviews.ui.experiment.djLightEffectView.DjCornerLightEffect
+import com.nexttel.experimental_composeviews.ui.experiment.djLightEffectView.DjLightStageEffect
 import com.nexttel.experimental_composeviews.ui.experiment.djTextEffect.DJLightingPerCharacterText
 import com.nexttel.experimental_composeviews.ui.experiment.shakableView.RandomShakeBox
 import com.nexttel.experimental_composeviews.ui.experiment.shimmer.shimmerEffect
@@ -85,9 +83,7 @@ fun ExperimentalViews(
             ){
                 DJLightingPerCharacterText(
                     text = "Dj Lighting Effect Per Character Demo",
-                    fontSize = 18.sp,
-                    modifier = Modifier
-                        .padding(horizontal = 30.dp, vertical = 4.dp)
+                    fontSize = 18.sp
                 )
             }
         }
@@ -99,13 +95,18 @@ fun ExperimentalViews(
                     .fillMaxWidth()
                     .height(60.dp)
             ){
-                DjCornerLightEffect(
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .background(color = Color.White)
-                        .padding(horizontal = 30.dp, vertical = 4.dp)
-                ){
-                    Text(text = "Dj Corner Light Effect")
+                DjLightStageEffect(
+                    modifier = Modifier.fillMaxSize(),
+                    beamCount = 2,
+                    rotationRange = 20f,
+                    rotationSpeed = 12f
+                ) {
+                    Text(
+                        text = "🎧 Let's Party!",
+                        modifier = Modifier.align(Alignment.Center),
+                        color = Color.Black,
+                        fontSize = 28.sp
+                    )
                 }
             }
         }
