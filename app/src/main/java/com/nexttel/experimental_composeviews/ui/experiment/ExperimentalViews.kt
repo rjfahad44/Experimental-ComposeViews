@@ -110,5 +110,16 @@ fun ExperimentalViews(
                 }
             }
         }
+
+        item {
+            ViewWithHeaderTitle(
+                title = "Dj Corner Light Effect",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+            ){
+
+            }
+        }
     }
 }
