@@ -30,7 +30,6 @@ fun ExperimentalViews(
 ) {
     val listState = rememberLazyListState()
     val beePainter = painterResource(id = R.drawable.bee)
-
     MovableBee(
         beeCount = 5,
         beeSize = 25.dp,

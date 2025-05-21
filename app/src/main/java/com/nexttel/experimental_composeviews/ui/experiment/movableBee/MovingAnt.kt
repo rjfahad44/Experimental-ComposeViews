@@ -44,10 +44,9 @@ fun MovableBee(
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        // 👇 User content appears *below* the bees
+        // Your content below bees
         content()
 
-        // 👇 Draw bees above the content
         repeat(beeCount) { index ->
             key(index) {
                 val x = remember { Animatable(0f) }
@@ -67,10 +66,18 @@ fun MovableBee(
                             val dy = targetY - y.value
                             rotationAngle = Math.toDegrees(atan2(dy, dx).toDouble()).toFloat()
 
-                            launch { x.animateTo(targetX, tween(beeSpeedMillis)) }
-                            launch { y.animateTo(targetY, tween(beeSpeedMillis)) }
+                            // Animate both axis together and wait till both finish
+                            val xAnim = launch {
+                                x.animateTo(targetX, tween(beeSpeedMillis))
+                            }
+                            val yAnim = launch {
+                                y.animateTo(targetY, tween(beeSpeedMillis))
+                            }
 
-                            delay(beeSpeedMillis.toLong())
+                            xAnim.join()
+                            yAnim.join()
+
+                            // Immediately start next move without delay
                         }
                     }
                 }
