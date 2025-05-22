@@ -1,5 +1,6 @@
 package com.nexttel.experimental_composeviews.ui.experiment
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nexttel.experimental_composeviews.R
+import com.nexttel.experimental_composeviews.ui.experiment.djLightEffectView.DJLightShowBox
 import com.nexttel.experimental_composeviews.ui.experiment.djLightEffectView.DjLightStageEffect
 import com.nexttel.experimental_composeviews.ui.experiment.djTextEffect.DJLightingPerCharacterText
 import com.nexttel.experimental_composeviews.ui.experiment.movableBee.MovableBee
@@ -123,11 +125,25 @@ fun ExperimentalViews(
 
             item {
                 ViewWithHeaderTitle(
-                    title = "Movable Ant",
+                    title = "DJ Show Light Effect",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(60.dp)
+                        .height(300.dp)
                 ) {
+                    val beamColors = listOf(
+                        Color.Red to Color.Yellow,
+                        Color.Cyan to Color.Blue,
+                        Color.Magenta to Color.Green
+                    )
+                    DJLightShowBox(
+                        lightCount = 5,
+                        beamColors = beamColors,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.Black)
+                    ) {
+
+                    }
                 }
             }
         }

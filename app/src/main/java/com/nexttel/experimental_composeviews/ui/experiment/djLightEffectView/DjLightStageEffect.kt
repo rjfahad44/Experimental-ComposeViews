@@ -132,5 +132,3 @@ fun DjLightStageEffect(
     }
 }
 
-
-
