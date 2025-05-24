@@ -3,6 +3,7 @@ package com.nexttel.experimental_composeviews.ui.experiment
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,21 +11,23 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nexttel.experimental_composeviews.R
 import com.nexttel.experimental_composeviews.ui.experiment.djLightEffect.DJLightShowBox
-import com.nexttel.experimental_composeviews.ui.experiment.djLightEffect.DjLightStageEffect
 import com.nexttel.experimental_composeviews.ui.experiment.djTextEffect.DJLightingPerCharacterText
 import com.nexttel.experimental_composeviews.ui.experiment.movableBee.MovableBee
 import com.nexttel.experimental_composeviews.ui.experiment.pagerViews.SmoothSwipeCardPager_1
+import com.nexttel.experimental_composeviews.ui.experiment.pagerViews.StackSwipeCardPager
 import com.nexttel.experimental_composeviews.ui.experiment.shakableView.RandomShakeBox
 import com.nexttel.experimental_composeviews.ui.experiment.shimmerEffect.shimmerEffect
 
@@ -46,8 +49,10 @@ fun ExperimentalViews(
             state = listState,
             modifier = modifier
                 .fillMaxSize()
+                .padding(horizontal = 16.dp)
                 .systemBarsPadding(),
             verticalArrangement = Arrangement.spacedBy(16.dp),
+            contentPadding = PaddingValues(vertical = 24.dp)
         ) {
             item {
                 ViewWithHeaderTitle(
@@ -106,29 +111,6 @@ fun ExperimentalViews(
 
             item {
                 ViewWithHeaderTitle(
-                    title = "Dj Corner Light Effect",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
-                ) {
-                    DjLightStageEffect(
-                        modifier = Modifier.fillMaxSize(),
-                        beamCount = 2,
-                        rotationRange = 20f,
-                        rotationSpeed = 12f
-                    ) {
-                        Text(
-                            text = "🎧 Let's Party!",
-                            modifier = Modifier.align(Alignment.Center),
-                            color = Color.Black,
-                            fontSize = 28.sp
-                        )
-                    }
-                }
-            }
-
-            item {
-                ViewWithHeaderTitle(
                     title = "DJ Show Light Effect",
                     modifier = Modifier
                         .fillMaxWidth()
@@ -171,6 +153,38 @@ fun ExperimentalViews(
                                 text = card,
                                 style = MaterialTheme.typography.headlineMedium.copy(color = Color.White)
                             )
+                        }
+                    }
+                }
+            }
+
+            item {
+                ViewWithHeaderTitle(
+                    title = "Fully Customizable Stack Pager",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp)
+                ) {
+                    StackSwipeCardPager(
+                        modifier = Modifier.fillMaxSize(),
+                        items = cards,
+                        visibleCards = 3,
+                        cardSpacing = 20.dp,
+                        cardWidth = (LocalConfiguration.current.screenWidthDp.dp * 0.9f),
+                        infinityLoop = true,
+                        applyFIFO = true,
+                        stackFromTop = false
+                    ) { item, index, bgColor ->
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(
+                                    color = bgColor,
+                                    shape = RoundedCornerShape(20.dp)
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(text = item, style = MaterialTheme.typography.headlineMedium, color = Color.White)
                         }
                     }
                 }
