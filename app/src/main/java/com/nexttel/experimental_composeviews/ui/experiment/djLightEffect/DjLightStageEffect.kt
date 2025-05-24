@@ -1,4 +1,4 @@
-package com.nexttel.experimental_composeviews.ui.experiment.djLightEffectView
+package com.nexttel.experimental_composeviews.ui.experiment.djLightEffect
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode

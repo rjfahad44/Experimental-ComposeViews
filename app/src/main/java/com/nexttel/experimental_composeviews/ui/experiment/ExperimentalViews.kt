@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,12 +20,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nexttel.experimental_composeviews.R
-import com.nexttel.experimental_composeviews.ui.experiment.djLightEffectView.DJLightShowBox
-import com.nexttel.experimental_composeviews.ui.experiment.djLightEffectView.DjLightStageEffect
+import com.nexttel.experimental_composeviews.ui.experiment.djLightEffect.DJLightShowBox
+import com.nexttel.experimental_composeviews.ui.experiment.djLightEffect.DjLightStageEffect
 import com.nexttel.experimental_composeviews.ui.experiment.djTextEffect.DJLightingPerCharacterText
 import com.nexttel.experimental_composeviews.ui.experiment.movableBee.MovableBee
+import com.nexttel.experimental_composeviews.ui.experiment.pagerViews.SmoothSwipeCardPager_1
 import com.nexttel.experimental_composeviews.ui.experiment.shakableView.RandomShakeBox
-import com.nexttel.experimental_composeviews.ui.experiment.shimmer.shimmerEffect
+import com.nexttel.experimental_composeviews.ui.experiment.shimmerEffect.shimmerEffect
 
 @Composable
 fun ExperimentalViews(
@@ -32,6 +34,8 @@ fun ExperimentalViews(
 ) {
     val listState = rememberLazyListState()
     val beePainter = painterResource(id = R.drawable.bee)
+    val cards = listOf("One", "Two", "Three", "Four", "Five")
+
     MovableBee(
         beeCount = 5,
         beeSize = 25.dp,
@@ -43,7 +47,7 @@ fun ExperimentalViews(
             modifier = modifier
                 .fillMaxSize()
                 .systemBarsPadding(),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             item {
                 ViewWithHeaderTitle(
@@ -140,9 +144,34 @@ fun ExperimentalViews(
                         beamColors = beamColors,
                         modifier = Modifier
                             .fillMaxSize()
-                            .background(Color.Black)
+                            .background(Color.White)
                     ) {
+                        // add any composable as you want
+                    }
+                }
+            }
 
+            item {
+                ViewWithHeaderTitle(
+                    title = "Pager: 1",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp)
+                ) {
+                    SmoothSwipeCardPager_1(
+                        items = cards
+                    ) { card, index, bgColor ->
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(bgColor),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = card,
+                                style = MaterialTheme.typography.headlineMedium.copy(color = Color.White)
+                            )
+                        }
                     }
                 }
             }
