@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.nexttel.experimental_composeviews"
+    namespace = "com.bitbytestudio.experimental_composeviews"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.nexttel.experimental_composeviews"
+        applicationId = "com.bitbytestudio.experimental_composeviews"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
