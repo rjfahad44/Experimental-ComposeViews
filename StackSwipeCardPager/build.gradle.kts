@@ -67,7 +67,6 @@ dependencies {
 }
 
 
-
 afterEvaluate {
     publishing {
         publications {
