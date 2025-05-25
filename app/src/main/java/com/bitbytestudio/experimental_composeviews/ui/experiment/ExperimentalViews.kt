@@ -34,6 +34,7 @@ import com.bitbytestudio.experimental_composeviews.ui.experiment.pagerViews.Smoo
 import com.bitbytestudio.experimental_composeviews.ui.experiment.shakableView.RandomShakeBox
 import com.bitbytestudio.experimental_composeviews.ui.experiment.shimmerEffect.shimmerEffect
 import com.bitbytestudio.experimental_composeviews.utils.DemoPage
+import com.bitbytestudio.experimental_composeviews.utils.DemoPage.Companion.pages
 import com.bitbytestudio.movableimage.MoveableImage
 import com.bitbytestudio.stackswipecardpager.StackSwipeCardPager
 
@@ -44,12 +45,10 @@ fun ExperimentalViews(
 ) {
     val beePainter = painterResource(id = R.drawable.bee)
     val cards = remember { listOf("One", "Two", "Three", "Four", "Five") }
-
-    val startIndex = Int.MAX_VALUE / 2
     val pagerState = rememberPagerState(
-        initialPage = startIndex,
+        initialPage = 0,
         initialPageOffsetFraction = 0f,
-        pageCount = { Int.MAX_VALUE }
+        pageCount = { Int.MAX_VALUE /*pages.size*/ }
     )
 
     val flingBehavior = PagerDefaults.flingBehavior(
