@@ -50,3 +50,4 @@ fun RandomShakeBox(
         content = content
     )
 }
+

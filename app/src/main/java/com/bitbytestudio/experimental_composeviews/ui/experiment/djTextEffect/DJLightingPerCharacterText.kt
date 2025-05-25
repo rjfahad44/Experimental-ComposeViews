@@ -22,10 +22,10 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun DJLightingPerCharacterText(
+    modifier: Modifier = Modifier,
     text: String,
     fontSize: TextUnit = 16.sp,
     fontWeight: FontWeight = FontWeight.Normal,
-    modifier: Modifier = Modifier
 ) {
     val colorOptions = listOf(
         Color.Red, Color.Green, Color.Blue, Color.Magenta, Color.Yellow, Color.Cyan, Color.White
