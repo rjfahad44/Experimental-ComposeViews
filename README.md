@@ -1,1 +1,25 @@
-#Experimantal-ComposeViews
+## ✨ Experimental Compose Views
+
+### 🔹 SHIMMER
+![Shimmer Effect](media/shimmer.gif)
+
+### 🐝 MOVEABLE_BEE
+![Moveable Bee](media/moveable_bee.gif)
+
+### 💥 RANDOM_SHAKE
+![Random Shake](media/random_shake.gif)
+
+### 🌀 RANDOM_MOVEABLE
+![Random Moveable](media/random_moveable.gif)
+
+### 💡 DJ_PER_CHAR
+![Lighting Per Character](media/dj_per_char.gif)
+
+### 🌈 DJ_SHOW
+![DJ Show Light](media/dj_show.gif)
+
+### 📄 SIMPLE_PAGER
+![Simple Pager](media/simple_pager.gif)
+
+### 📚 STACK_PAGER
+![Fully Customizable Stack Pager](media/stack_pager.gif)

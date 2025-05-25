@@ -2,7 +2,7 @@ package com.bitbytestudio.experimental_composeviews.utils
 
 enum class DemoPage(val title: String) {
     SHIMMER("Shimmer Effect"),
-    MOVEABLE_BEE("Movable Bee"),
+    MOVEABLE_BEE("Moveable Bee"),
     RANDOM_SHAKE("Random Shake"),
     RANDOM_MOVEABLE("Random Moveable"),
     DJ_PER_CHAR("Dj Lighting Per Character"),
