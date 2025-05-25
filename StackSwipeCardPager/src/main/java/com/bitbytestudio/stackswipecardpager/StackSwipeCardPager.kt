@@ -1,4 +1,4 @@
-package com.bitbytestudio.experimental_composeviews.ui.experiment.pagerViews
+package com.bitbytestudio.stackswipecardpager
 
 
 import androidx.compose.animation.core.Animatable
@@ -33,14 +33,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.bitbytestudio.utils.DynamicUniqueColorGenerator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
-
 @Composable
-internal inline fun <reified T> StackSwipeCardPager(
+inline fun <reified T> StackSwipeCardPager(
     items: List<T>,
     modifier: Modifier = Modifier,
     visibleCards: Int = 3,
@@ -61,7 +61,7 @@ internal inline fun <reified T> StackSwipeCardPager(
     var isDragging by remember { mutableStateOf(false) }
 
     // Random color per card (stable)
-    val colorMap = remember(cardList) { cardList.associateWith { randomColor() }.toMutableMap() }
+    val colorMap = remember(cardList) { cardList.associateWith { DynamicUniqueColorGenerator.nextColor() }.toMutableMap() }
 
     val alpha by remember { derivedStateOf { 1f - (abs(cardOffset.value.x) / 600f).coerceIn(0f, 1f) } }
 
@@ -144,7 +144,7 @@ internal inline fun <reified T> StackSwipeCardPager(
 }
 
 @Composable
-private fun CardBox(
+fun CardBox(
     modifier: Modifier,
     cardWidth: Dp,
     cardHeight: Dp,
@@ -160,7 +160,7 @@ private fun CardBox(
     }
 }
 
-private fun <T> handleCardSwipe(
+fun <T> handleCardSwipe(
     cardList: SnapshotStateList<T>,
     applyFIFO: Boolean,
     infinityLoop: Boolean,
@@ -191,16 +191,3 @@ private fun <T> handleCardSwipe(
         }
     }
 }
-
-fun randomColor(): Color {
-    val colors = listOf(
-        Color(0xFF2196F3),
-        Color(0xFFFF9800),
-        Color(0xFF4CAF50),
-        Color(0xFFE91E63),
-        Color(0xFF9C27B0),
-        Color(0xFFFF5722),
-    )
-    return colors.random()
-}
-

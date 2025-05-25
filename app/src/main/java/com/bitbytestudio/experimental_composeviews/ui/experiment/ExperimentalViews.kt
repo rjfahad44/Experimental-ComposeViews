@@ -27,9 +27,9 @@ import com.bitbytestudio.experimental_composeviews.ui.experiment.djLightEffect.D
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djTextEffect.DJLightingPerCharacterText
 import com.bitbytestudio.experimental_composeviews.ui.experiment.movableBee.MovableBee
 import com.bitbytestudio.experimental_composeviews.ui.experiment.pagerViews.SmoothSwipeCardPager_1
-import com.bitbytestudio.experimental_composeviews.ui.experiment.pagerViews.StackSwipeCardPager
 import com.bitbytestudio.experimental_composeviews.ui.experiment.shakableView.RandomShakeBox
 import com.bitbytestudio.experimental_composeviews.ui.experiment.shimmerEffect.shimmerEffect
+import com.bitbytestudio.stackswipecardpager.StackSwipeCardPager
 
 @Composable
 fun ExperimentalViews(
