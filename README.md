@@ -1,25 +1,25 @@
 ## ✨ Experimental Compose Views
 
 ### 🔹 SHIMMER
-![Shimmer Effect](media/shimmer.gif)
+![Shimmer Effect](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/shimmer_effect.mp4)
 
 ### 🐝 MOVEABLE_BEE
-![Moveable Bee](media/moveable_bee.gif)
+![Moveable Bee](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/moveable_bee.mp4)
 
 ### 💥 RANDOM_SHAKE
-![Random Shake](media/random_shake.gif)
+![Random Shake](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/random_shake.mp4)
 
 ### 🌀 RANDOM_MOVEABLE
-![Random Moveable](media/random_moveable.gif)
+![Random Moveable](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/random_moveable.mp4)
 
 ### 💡 DJ_PER_CHAR
 ![Lighting Per Character](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/dj_lighting_per_character.gif)
 
 ### 🌈 DJ_SHOW
-![DJ Show Light](media/dj_show.gif)
+![DJ Show Light](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/dj_show_light_effect.gif)
 
 ### 📄 SIMPLE_PAGER
-![Simple Pager](media/simple_pager.gif)
+![Simple Pager](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/simple_pager.mp4)
 
 ### 📚 STACK_PAGER
-![Fully Customizable Stack Pager](media/stack_pager.gif)
+![Fully Customizable Stack Pager](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/fully_customizable_stack_pager.mp4)
