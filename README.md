@@ -13,7 +13,7 @@
 ![Random Moveable](media/random_moveable.gif)
 
 ### 💡 DJ_PER_CHAR
-(https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/dj_lighting_per_character.mp4)
+![Lighting Per Character](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/dj_lighting_per_character.gif)
 
 ### 🌈 DJ_SHOW
 ![DJ Show Light](media/dj_show.gif)
