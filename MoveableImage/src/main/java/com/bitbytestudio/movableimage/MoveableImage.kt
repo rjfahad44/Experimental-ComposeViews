@@ -1,6 +1,8 @@
-package com.bitbytestudio.experimental_composeviews.ui.experiment.movableBee
+package com.bitbytestudio.movableimage
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.Easing
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -27,12 +29,12 @@ import kotlinx.coroutines.launch
 import kotlin.math.atan2
 import kotlin.random.Random
 
-
 @Composable
-fun MovableBee(
+fun MoveableImage(
     beeCount: Int = 1,
     beeSize: Dp = 30.dp,
     beeSpeedMillis: Int = 1000,
+    easing: Easing = LinearEasing,
     beePainter: Painter,
     content: @Composable BoxScope.() -> Unit
 ) {
@@ -67,10 +69,10 @@ fun MovableBee(
 
                             // Animate both axis together and wait till both finish
                             val xAnim = launch {
-                                x.animateTo(targetX, tween(beeSpeedMillis))
+                                x.animateTo(targetX, tween(durationMillis = beeSpeedMillis, easing = easing))
                             }
                             val yAnim = launch {
-                                y.animateTo(targetY, tween(beeSpeedMillis))
+                                y.animateTo(targetY, tween(durationMillis = beeSpeedMillis, easing = easing))
                             }
 
                             xAnim.join()
@@ -89,7 +91,7 @@ fun MovableBee(
                 ) {
                     Image(
                         painter = beePainter,
-                        contentDescription = "Bee",
+                        contentDescription = "MoveableImage",
                         modifier = Modifier.fillMaxSize()
                     )
                 }
@@ -97,4 +99,3 @@ fun MovableBee(
         }
     }
 }
-

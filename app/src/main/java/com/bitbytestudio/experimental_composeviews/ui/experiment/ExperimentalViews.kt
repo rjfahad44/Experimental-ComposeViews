@@ -1,6 +1,7 @@
 package com.bitbytestudio.experimental_composeviews.ui.experiment
 
 
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
@@ -29,11 +30,11 @@ import com.bitbytestudio.experimental_composeviews.R
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djLightEffect.DJLightShowBox
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djTextEffect.DJLightingPerCharacterText
 import com.bitbytestudio.experimental_composeviews.ui.experiment.fullScreenRandomMoverBox.FullScreenRandomMoverBox
-import com.bitbytestudio.experimental_composeviews.ui.experiment.movableBee.MovableBee
 import com.bitbytestudio.experimental_composeviews.ui.experiment.pagerViews.SmoothSwipeCardPager_1
 import com.bitbytestudio.experimental_composeviews.ui.experiment.shakableView.RandomShakeBox
 import com.bitbytestudio.experimental_composeviews.ui.experiment.shimmerEffect.shimmerEffect
 import com.bitbytestudio.experimental_composeviews.utils.DemoPage
+import com.bitbytestudio.movableimage.MoveableImage
 import com.bitbytestudio.stackswipecardpager.StackSwipeCardPager
 
 
@@ -79,10 +80,11 @@ fun ExperimentalViews(
             when (page) {
 
                 DemoPage.MOVEABLE_BEE ->{
-                    MovableBee(
+                    MoveableImage(
                         beeCount = 5,
                         beeSize = 35.dp,
                         beeSpeedMillis = 1500,
+                        easing = LinearEasing,
                         beePainter = beePainter
                     ) {
                         // add any composable as you want
@@ -128,11 +130,13 @@ fun ExperimentalViews(
                 }
 
                 DemoPage.DJ_PER_CHAR -> {
-                    DJLightingPerCharacterText(
-                        modifier = Modifier.padding(16.dp),
-                        text = "Dj Lighting Effect Per Character Demo",
-                        fontSize = 32.sp
-                    )
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        DJLightingPerCharacterText(
+                            modifier = Modifier.fillMaxWidth().padding(32.dp),
+                            text = "Dj Lighting Effect Per Character Demo",
+                            fontSize = 32.sp
+                        )
+                    }
                 }
 
                 DemoPage.DJ_SHOW -> {

@@ -23,3 +23,4 @@ dependencyResolutionManagement {
 rootProject.name = "Experimental-ComposeViews"
 include(":app")
 include(":StackSwipeCardPager")
+include(":MoveableImage")
