@@ -22,4 +22,4 @@
 ![Simple Pager](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/simple_pager.mp4)
 
 ### 📚 STACK_PAGER
-![Fully Customizable Stack Pager](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/fully_customizable_stack_pager.mp4)
+![Fully Customizable Stack Pager](https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/fully_customizable_stack_pager.gif)
