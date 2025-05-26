@@ -71,8 +71,9 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
-                groupId = "com.github.rjfahad44.moveableimage"
-                artifactId = "core-bitbytestudio"
+                //groupId = "com.github.rjfahad44.moveableimage"
+                groupId = "com.github.rjfahad44"
+                artifactId = "moveableimage"
                 version = "0.0.1"
 
                 from(components["release"])

@@ -69,8 +69,9 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
-                groupId = "com.github.rjfahad44.stackswipecardpager"
-                artifactId = "core-bitbytestudio"
+                //groupId = "com.github.rjfahad44.stackswipecardpager"
+                groupId = "com.github.rjfahad44"
+                artifactId = "stackswipecardpager"
                 version = "0.0.1"
 
                 from(components["release"])
