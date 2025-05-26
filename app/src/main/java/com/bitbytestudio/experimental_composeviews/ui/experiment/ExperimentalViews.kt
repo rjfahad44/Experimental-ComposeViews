@@ -34,7 +34,6 @@ import com.bitbytestudio.experimental_composeviews.ui.experiment.pagerViews.Smoo
 import com.bitbytestudio.experimental_composeviews.ui.experiment.shakableView.RandomShakeBox
 import com.bitbytestudio.experimental_composeviews.ui.experiment.shimmerEffect.shimmerEffect
 import com.bitbytestudio.experimental_composeviews.utils.DemoPage
-import com.bitbytestudio.experimental_composeviews.utils.DemoPage.Companion.pages
 import com.bitbytestudio.movableimage.MoveableImage
 import com.bitbytestudio.stackswipecardpager.StackSwipeCardPager
 
@@ -65,7 +64,6 @@ fun ExperimentalViews(
         flingBehavior = flingBehavior,
         contentPadding = PaddingValues(0.dp),
         beyondViewportPageCount = 0,
-        pageSpacing = 16.dp,
         modifier = modifier
             .fillMaxSize()
     ) { pageIndex ->
@@ -77,7 +75,6 @@ fun ExperimentalViews(
                 .fillMaxSize()
         ) {
             when (page) {
-
                 DemoPage.MOVEABLE_BEE ->{
                     MoveableImage(
                         beeCount = 5,
