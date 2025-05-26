@@ -50,6 +50,8 @@ A collection of experimental and animated Jetpack Compose views for modern Andro
 
 ### 📦 Dependencies
 
+add dependency to your app level **`build.gradle.kts`**
+
 <details>
 <summary>🐝 Moveable Bee</summary>
 </details>
