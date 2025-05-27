@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.maven.publish)
 }
 
+version = "0.0.1"
+
 android {
     namespace = "com.bitbytestudio.stackswipecardpager"
     compileSdk = 35
