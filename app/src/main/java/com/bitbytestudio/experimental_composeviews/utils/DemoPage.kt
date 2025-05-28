@@ -8,7 +8,8 @@ enum class DemoPage(val title: String) {
     DJ_PER_CHAR("Dj Lighting Per Character"),
     DJ_SHOW("DJ Show Light Effect"),
     SIMPLE_PAGER("Simple Pager"),
-    STACK_PAGER("Fully Customizable Stack Pager");
+    STACK_PAGER("Fully Customizable Stack Pager"),
+    PARTY_EFFECT("Party Effect");
 
     companion object {
         val pages = listOf(
@@ -20,6 +21,7 @@ enum class DemoPage(val title: String) {
             DJ_SHOW,
             SIMPLE_PAGER,
             STACK_PAGER,
+            PARTY_EFFECT,
         )
         fun fromIndex(index: Int): DemoPage {
             val values = entries

@@ -42,7 +42,10 @@ A collection of experimental and animated Jetpack Compose views for modern Andro
 <img src="https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/fully_customizable_stack_pager.gif?raw=true" width="200"><br><br>
 📋 <sub>See code below</sub>
 </td>
-<td></td> 
+<td align="center"> <b>🥳 Party Effect</b><br>
+<img src="https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/party_effects.gif?raw=true" width="200"><br><br>
+📋 <sub>See code below</sub>
+</td>
 </tr>
 </table>
 

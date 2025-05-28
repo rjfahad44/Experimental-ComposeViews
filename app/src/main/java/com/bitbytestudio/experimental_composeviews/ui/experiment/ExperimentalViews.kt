@@ -60,148 +60,150 @@ fun ExperimentalViews(
         ),
     )
 
-    PartyView()
+    VerticalPager(
+        state = pagerState,
+        flingBehavior = flingBehavior,
+        contentPadding = PaddingValues(0.dp),
+        beyondViewportPageCount = 0,
+        modifier = modifier
+            .fillMaxSize()
+    ) { pageIndex ->
 
-//    VerticalPager(
-//        state = pagerState,
-//        flingBehavior = flingBehavior,
-//        contentPadding = PaddingValues(0.dp),
-//        beyondViewportPageCount = 0,
-//        modifier = modifier
-//            .fillMaxSize()
-//    ) { pageIndex ->
-//
-//        val page = DemoPage.fromIndex(pageIndex)
-//        ViewWithHeaderTitle(
-//            title = page.title,
-//            modifier = Modifier
-//                .fillMaxSize()
-//        ) {
-//            when (page) {
-//                DemoPage.MOVEABLE_BEE ->{
-//                    MoveableImage(
-//                        beeCount = 5,
-//                        beeSize = 35.dp,
-//                        beeSpeedMillis = 1500,
-//                        easing = LinearEasing,
-//                        beePainter = beePainter
-//                    ) {
-//                        // add any composable as you want
-//                    }
-//                }
-//
-//                DemoPage.SHIMMER -> {
-//                    Box(
-//                        modifier = Modifier
-//                            .fillMaxSize()
-//                            .shimmerEffect(
-//                                shimmerWidthDp = LocalConfiguration.current.screenWidthDp.dp
-//                            ),
-//                    )
-//                }
-//
-//                DemoPage.RANDOM_SHAKE -> {
-//                    Box(
-//                        modifier = Modifier
-//                            .fillMaxSize(),
-//                        contentAlignment = Alignment.Center
-//                    ) {
-//                        RandomShakeBox(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(16.dp),
-//                            shakeRange = 30,
-//                            durationMillis = 1000
-//                        ) {
-//                            Text(text = "Shakable view")
-//                        }
-//                    }
-//                }
-//
-//                DemoPage.RANDOM_MOVEABLE -> {
-//                    FullScreenRandomMoverBox(
-//                        modifier = Modifier
-//                            .fillMaxSize(),
-//                        durationMillis = 1000
-//                    ) {
-//                        Text(text = "Random Moveable")
-//                    }
-//                }
-//
-//                DemoPage.DJ_PER_CHAR -> {
-//                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-//                        DJLightingPerCharacterText(
-//                            modifier = Modifier.fillMaxWidth().padding(32.dp),
-//                            text = "Dj Lighting Effect Per Character Demo",
-//                            fontSize = 32.sp
-//                        )
-//                    }
-//                }
-//
-//                DemoPage.DJ_SHOW -> {
-//                    val beamColors = listOf(
-//                        Color.Red to Color.Yellow,
-//                        Color.Cyan to Color.Blue,
-//                        Color.Magenta to Color.Green
-//                    )
-//                    DJLightShowBox(
-//                        lightCount = 5,
-//                        beamColors = beamColors,
-//                        modifier = Modifier
-//                            .fillMaxSize()
-//                            .background(Color.White)
-//                    ) {
-//                        // add any composable as you want
-//                    }
-//                }
-//
-//                DemoPage.SIMPLE_PAGER -> {
-//                    SmoothSwipeCardPager_1(
-//                        items = cards
-//                    ) { card, index, bgColor ->
-//                        Box(
-//                            modifier = Modifier
-//                                .fillMaxSize()
-//                                .background(bgColor),
-//                            contentAlignment = Alignment.Center
-//                        ) {
-//                            Text(
-//                                text = card,
-//                                style = MaterialTheme.typography.headlineMedium.copy(color = Color.White)
-//                            )
-//                        }
-//                    }
-//                }
-//
-//                DemoPage.STACK_PAGER -> {
-//                    StackSwipeCardPager(
-//                        modifier = Modifier.fillMaxSize(),
-//                        items = cards,
-//                        visibleCards = 3,
-//                        cardSpacing = 20.dp,
-//                        cardWidth = (LocalConfiguration.current.screenWidthDp.dp * 0.9f),
-//                        infinityLoop = true,
-//                        applyFIFO = true,
-//                        stackFromTop = false
-//                    ) { item, index, bgColor ->
-//                        Box(
-//                            modifier = Modifier
-//                                .fillMaxSize()
-//                                .background(
-//                                    color = bgColor,
-//                                    shape = RoundedCornerShape(20.dp)
-//                                ),
-//                            contentAlignment = Alignment.Center
-//                        ) {
-//                            Text(
-//                                text = item,
-//                                style = MaterialTheme.typography.headlineMedium,
-//                                color = Color.White
-//                            )
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
+        val page = DemoPage.fromIndex(pageIndex)
+        ViewWithHeaderTitle(
+            title = page.title,
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            when (page) {
+                DemoPage.MOVEABLE_BEE ->{
+                    MoveableImage(
+                        beeCount = 5,
+                        beeSize = 35.dp,
+                        beeSpeedMillis = 1500,
+                        easing = LinearEasing,
+                        beePainter = beePainter
+                    ) {
+                        // add any composable as you want
+                    }
+                }
+
+                DemoPage.SHIMMER -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .shimmerEffect(
+                                shimmerWidthDp = LocalConfiguration.current.screenWidthDp.dp
+                            ),
+                    )
+                }
+
+                DemoPage.RANDOM_SHAKE -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        RandomShakeBox(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            shakeRange = 30,
+                            durationMillis = 1000
+                        ) {
+                            Text(text = "Shakable view")
+                        }
+                    }
+                }
+
+                DemoPage.RANDOM_MOVEABLE -> {
+                    FullScreenRandomMoverBox(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        durationMillis = 1000
+                    ) {
+                        Text(text = "Random Moveable")
+                    }
+                }
+
+                DemoPage.DJ_PER_CHAR -> {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        DJLightingPerCharacterText(
+                            modifier = Modifier.fillMaxWidth().padding(32.dp),
+                            text = "Dj Lighting Effect Per Character Demo",
+                            fontSize = 32.sp
+                        )
+                    }
+                }
+
+                DemoPage.DJ_SHOW -> {
+                    val beamColors = listOf(
+                        Color.Red to Color.Yellow,
+                        Color.Cyan to Color.Blue,
+                        Color.Magenta to Color.Green
+                    )
+                    DJLightShowBox(
+                        lightCount = 5,
+                        beamColors = beamColors,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Color.White)
+                    ) {
+                        // add any composable as you want
+                    }
+                }
+
+                DemoPage.SIMPLE_PAGER -> {
+                    SmoothSwipeCardPager_1(
+                        items = cards
+                    ) { card, index, bgColor ->
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(bgColor),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = card,
+                                style = MaterialTheme.typography.headlineMedium.copy(color = Color.White)
+                            )
+                        }
+                    }
+                }
+
+                DemoPage.STACK_PAGER -> {
+                    StackSwipeCardPager(
+                        modifier = Modifier.fillMaxSize(),
+                        items = cards,
+                        visibleCards = 3,
+                        cardSpacing = 20.dp,
+                        cardWidth = (LocalConfiguration.current.screenWidthDp.dp * 0.9f),
+                        infinityLoop = true,
+                        applyFIFO = true,
+                        stackFromTop = false
+                    ) { item, index, bgColor ->
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(
+                                    color = bgColor,
+                                    shape = RoundedCornerShape(20.dp)
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = item,
+                                style = MaterialTheme.typography.headlineMedium,
+                                color = Color.White
+                            )
+                        }
+                    }
+                }
+
+                DemoPage.PARTY_EFFECT -> {
+                    PartyView()
+                }
+            }
+        }
+    }
 }
