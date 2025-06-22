@@ -73,7 +73,7 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 groupId = "com.github.rjfahad44"
                 artifactId = "stackswipecardpager"
-                version = "0.0.1"
+                version = "0.0.1-alpha"
 
                 from(components["release"])
             }
