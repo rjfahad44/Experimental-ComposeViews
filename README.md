@@ -60,13 +60,19 @@ add dependency to your app level **`build.gradle.kts`**
 </details>
 
 ```kotlin
-implementation("com.github.rjfahad44.Experimental-ComposeViews:moveableimage:v0.0.2-alpha")
+implementation("com.github.rjfahad44.Experimental-ComposeViews:moveableimage:v0.0.3-alpha")
 ```
 
 <details> <summary>📚 Stack Pager</summary></details>
 
 ```kotlin
-implementation("com.github.rjfahad44.Experimental-ComposeViews:stackswipecardpager:v0.0.2-alpha")
+implementation("com.github.rjfahad44.Experimental-ComposeViews:stackswipecardpager:v0.0.3-alpha")
+```
+
+<details> <summary>📚 Party Effect</summary></details>
+
+```kotlin
+implementation("com.github.rjfahad44.Experimental-ComposeViews:partyeffect:v0.0.3-alpha")
 ```
 
 
