@@ -15,16 +15,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.bitbytestudio.experimental_composeviews.ui.experiment.partyEffect.efeects.Effects
+import com.bitbytestudio.partyeffect.PartyCanvas
+import com.bitbytestudio.partyeffect.efeects.Effects
 
 @Composable
 fun PartyView() {
-    var isAnimating by remember { mutableStateOf(false) }
-    var index by remember { mutableIntStateOf(0) }
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize(),
     ) {
+        var isAnimating by remember { mutableStateOf(false) }
+        var index by remember { mutableIntStateOf(0) }
         val (effectsName, parties) = Effects.all[index]
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -52,11 +53,3 @@ fun PartyView() {
         }
     }
 }
-
-
-
-
-
-
-
-
