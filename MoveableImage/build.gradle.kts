@@ -9,7 +9,7 @@ version = "0.0.1"
 
 android {
     namespace = "com.bitbytestudio.moveableimage"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 21

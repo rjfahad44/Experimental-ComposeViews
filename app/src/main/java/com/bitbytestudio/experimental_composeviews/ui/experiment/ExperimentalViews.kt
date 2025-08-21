@@ -65,8 +65,7 @@ fun ExperimentalViews(
         flingBehavior = flingBehavior,
         contentPadding = PaddingValues(0.dp),
         beyondViewportPageCount = 0,
-        modifier = modifier
-            .fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) { pageIndex ->
 
         val page = DemoPage.fromIndex(pageIndex)

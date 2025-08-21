@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.bitbytestudio.experimental_composeviews.ui.experiment.ExperimentalViews
+import com.bitbytestudio.experimental_composeviews.ui.experiment.games.BallAndBrickGame
 import com.bitbytestudio.experimental_composeviews.ui.theme.ExperimentalComposeViewsTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,6 +22,8 @@ class MainActivity : ComponentActivity() {
                     ExperimentalViews(
                         modifier = Modifier.padding(innerPadding)
                     )
+
+                    //BallAndBrickGame(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

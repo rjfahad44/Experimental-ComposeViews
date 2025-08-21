@@ -11,6 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/MoveableImage" />
+            <option value="$PROJECT_DIR$/PartyEffect" />
             <option value="$PROJECT_DIR$/StackSwipeCardPager" />
             <option value="$PROJECT_DIR$/app" />
           </set>
