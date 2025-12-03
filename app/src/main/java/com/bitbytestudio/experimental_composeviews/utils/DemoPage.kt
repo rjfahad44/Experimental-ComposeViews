@@ -1,6 +1,7 @@
 package com.bitbytestudio.experimental_composeviews.utils
 
 enum class DemoPage(val title: String) {
+    CURVED_SLIDER("Curved Slider"),
     SHIMMER("Shimmer Effect"),
     MOVEABLE_BEE("Moveable Bee"),
     RANDOM_SHAKE("Random Shake"),
@@ -13,6 +14,7 @@ enum class DemoPage(val title: String) {
 
     companion object {
         val pages = listOf(
+            CURVED_SLIDER,
             SHIMMER,
             MOVEABLE_BEE,
             RANDOM_SHAKE,

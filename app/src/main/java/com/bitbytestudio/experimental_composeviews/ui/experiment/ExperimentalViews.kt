@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bitbytestudio.experimental_composeviews.R
+import com.bitbytestudio.experimental_composeviews.ui.experiment.curvedSlider.CurvedSliderScreen
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djLightEffect.DJLightShowBox
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djTextEffect.DJLightingPerCharacterText
 import com.bitbytestudio.experimental_composeviews.ui.experiment.fullScreenRandomMoverBox.FullScreenRandomMoverBox
@@ -75,6 +76,9 @@ fun ExperimentalViews(
                 .fillMaxSize()
         ) {
             when (page) {
+                DemoPage.CURVED_SLIDER ->{
+                    CurvedSliderScreen()
+                }
                 DemoPage.MOVEABLE_BEE ->{
                     MoveableImage(
                         beeCount = 5,
