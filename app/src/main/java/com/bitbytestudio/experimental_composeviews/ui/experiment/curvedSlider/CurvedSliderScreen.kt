@@ -9,6 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
@@ -23,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlin.math.abs
 import kotlin.math.ceil
+import kotlin.math.min
 import kotlin.math.roundToInt
 
 
@@ -57,14 +59,16 @@ fun CurvedSlider(
     lineStroke: Stroke = Stroke(width = 15f, cap = StrokeCap.Round),
     thumbRadius: Dp = 22.dp,
     lineCurveBendY: Float = 100f,
-    lineCurveBendX: Float = 35f,
-    lineCurveShiftX: Float = 30f
+    lineCurveBendX: Float = 50f,
+    lineCurveShiftX: Float = 45f,
+    thumbDragPadding: Dp = 20.dp
 ) {
+    val context = LocalDensity.current
     var sliderHeight by remember { mutableFloatStateOf(0f) }
-    val radiusPx = with(LocalDensity.current) { thumbRadius.toPx() }
+    val radiusPx = with(context) { thumbRadius.toPx() }
+    val thumbDragPaddingPx = with(context) { thumbDragPadding.toPx() }
 
     Box(modifier) {
-
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
@@ -72,9 +76,8 @@ fun CurvedSlider(
                     detectDragGestures(
                         onDrag = { change, offset ->
                             change.consume()
-
                             // Calculate value - allow dragging even at boundaries
-                            val newY = change.position.y.coerceIn(radiusPx, sliderHeight - radiusPx)
+                            val newY = change.position.y.coerceIn(radiusPx, sliderHeight - radiusPx - thumbDragPaddingPx)
                             val newValue = ((sliderHeight - newY) / sliderHeight * 100f).coerceIn(range.start, range.endInclusive)
                             onValueChange(newValue)
                         }
@@ -83,12 +86,13 @@ fun CurvedSlider(
         ) {
             sliderHeight = size.height
             val centerX = size.width * 0.50f       // left-aligned
-            //val thumbY = sliderHeight - (value / 100f * sliderHeight)
-            val thumbY = (sliderHeight - (value / 100f * sliderHeight)).coerceIn(radiusPx, sliderHeight - radiusPx)
+            val rawThumbY = sliderHeight - (value / 100f * sliderHeight)
+            val thumbY = rawThumbY.coerceIn(radiusPx + thumbDragPaddingPx, sliderHeight - radiusPx)
 
             val gradient = Brush.verticalGradient(
                 listOf(
                     Color(0xFFEB2D4C),   // red top
+                    Color(0xFF00BD08),   // red top
                     Color(0xFF376BFF)    // blue bottom
                 )
             )
@@ -97,7 +101,6 @@ fun CurvedSlider(
             val topLimit = lineStroke.width
             val bottomLimit = sliderHeight - lineStroke.width
 
-            // Shrink curve near edges (half curve at top/bottom)
             val curveFactor = adaptiveCurveFactor(thumbY, sliderHeight, radiusPx)
 
             val bendY = lineCurveBendY * curveFactor
@@ -108,7 +111,6 @@ fun CurvedSlider(
 
             val bottomCurveY2 = (thumbY + bendX).coerceAtMost(bottomLimit)
             val bottomCurveY1 = (thumbY + bendY).coerceAtMost(bottomLimit)
-
 
             // -------- Curved path around thumb --------
             val curvedPath = Path().apply {
@@ -137,25 +139,70 @@ fun CurvedSlider(
                 style = lineStroke
             )
 
-            // -------- Outer white glow --------
-            drawCircle(
-                color = Color.White.copy(alpha = 0.4f),
-                radius = radiusPx * 1.0f,
-                center = Offset(centerX + lineCurveShiftX, thumbY)
-            )
+            // -------- Thumb Progress Indicator --------
+            val thumbCenter = Offset(centerX + lineCurveShiftX, thumbY)
+            val progressAngle = (ceil(value + 0.5f) / 100f) * 360f
+            val strokeWidth = radiusPx * 0.20f
 
-            // -------- Thumb main circle --------
+            // Background circle (light gray)
             drawCircle(
-                color = Color(0xFF376BFF),
+                color = Color(0xFFE0E0E0),
                 radius = radiusPx,
-                center = Offset(centerX + lineCurveShiftX, thumbY)
+                center = thumbCenter,
             )
 
-            // -------- Center white dot --------
+            // Progress arc around thumb
+            drawArc(
+                brush = gradient,
+                startAngle = -90f,
+                sweepAngle = progressAngle,
+                useCenter = false,
+                topLeft = Offset(
+                    thumbCenter.x - radiusPx,
+                    thumbCenter.y - radiusPx
+                ),
+                size = Size(radiusPx * 2f, radiusPx * 2f),
+                style = Stroke(width = strokeWidth, cap = StrokeCap.Round)
+            )
+
+            // Inner main circle
+            drawCircle(
+                brush = gradient,
+                radius = radiusPx * 0.75f,
+                center = thumbCenter
+            )
+
+            // Center dot
             drawCircle(
                 color = Color.White,
-                radius = 5.dp.toPx(),
-                center = Offset(centerX + lineCurveShiftX, thumbY)
+                radius = radiusPx * 0.20f,
+                center = thumbCenter
+            )
+
+
+            // -------- Up/Down Arrows --------
+            val arrowSize = radiusPx * 0.55f
+
+            // Top arrow
+            drawPath(
+                path = Path().apply {
+                    moveTo(thumbCenter.x, thumbCenter.y - radiusPx - arrowSize)     // top point
+                    lineTo(thumbCenter.x - arrowSize / 1.5f, thumbCenter.y - radiusPx - arrowSize / 3)
+                    lineTo(thumbCenter.x + arrowSize / 1.5f, thumbCenter.y - radiusPx - arrowSize / 3)
+                    close()
+                },
+                brush = gradient,
+            )
+
+            // Bottom arrow
+            drawPath(
+                path = Path().apply {
+                    moveTo(thumbCenter.x, thumbCenter.y + radiusPx + arrowSize)
+                    lineTo(thumbCenter.x - arrowSize / 1.5f, thumbCenter.y + radiusPx + arrowSize / 3)
+                    lineTo(thumbCenter.x + arrowSize / 1.5f, thumbCenter.y + radiusPx + arrowSize / 3)
+                    close()
+                },
+                brush = gradient,
             )
         }
 
@@ -180,14 +227,10 @@ fun CurvedSlider(
     }
 }
 
-
 private fun adaptiveCurveFactor(thumbY: Float, height: Float, radius: Float): Float {
-    val minDist = radius * 2.5f  // distance from edges
-    val minFactor = .5f        // 👈 curve will shrink to HALF, not zero
-
     return when {
-        thumbY < minDist -> (thumbY / minDist).coerceAtLeast(minFactor)
-        thumbY > height - minDist -> ((height - thumbY) / minDist).coerceAtLeast(minFactor)
+        thumbY < radius -> (thumbY / radius).coerceAtLeast(radius)
+        thumbY > height - radius -> ((height - thumbY) / radius).coerceAtLeast(radius)
         else -> 1f
     }
 }
