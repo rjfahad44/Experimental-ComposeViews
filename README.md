@@ -19,6 +19,7 @@ A collection of experimental and animated Jetpack Compose views for modern Andro
 📋 <sub>See code below</sub>
 </td>
 </tr>
+
 <tr> 
 <td align="center"> <b>🌀 RANDOM_MOVEABLE</b><br>
 <img src="https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/random_moveable.gif?raw=true" width="200"><br><br>
@@ -33,6 +34,7 @@ A collection of experimental and animated Jetpack Compose views for modern Andro
 📋 <sub>See code below</sub>
 </td>
 </tr>
+
 <tr>
 <td align="center"> <b>📄 SIMPLE_PAGER</b><br>
 <img src="https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/simple_pager.gif?raw=true" width="200"><br><br>
@@ -47,6 +49,14 @@ A collection of experimental and animated Jetpack Compose views for modern Andro
 📋 <sub>See code below</sub>
 </td>
 </tr>
+
+<tr>
+<td align="center"> <b>🚀 CURVED_SLIDER</b><br>
+<img src="https://github.com/rjfahad44/Experimental-ComposeViews/blob/dev_fahad/demo_media/custom_curved_slider.gif?raw=true" width="200"><br><br>
+📋 <sub>See code below</sub>
+</td> 
+</tr>
+
 </table>
 
 ---
