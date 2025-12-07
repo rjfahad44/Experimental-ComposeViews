@@ -31,6 +31,7 @@ import com.bitbytestudio.experimental_composeviews.ui.experiment.curvedSlider.Cu
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djLightEffect.DJLightShowBox
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djTextEffect.DJLightingPerCharacterText
 import com.bitbytestudio.experimental_composeviews.ui.experiment.fullScreenRandomMoverBox.FullScreenRandomMoverBox
+import com.bitbytestudio.experimental_composeviews.ui.experiment.noGravity.DemoNoGravityScreen
 import com.bitbytestudio.experimental_composeviews.ui.experiment.pagerViews.SmoothSwipeCardPager_1
 import com.bitbytestudio.experimental_composeviews.ui.experiment.partyEffect.PartyView
 import com.bitbytestudio.experimental_composeviews.ui.experiment.shakableView.RandomShakeBox
@@ -76,6 +77,9 @@ fun ExperimentalViews(
                 .fillMaxSize()
         ) {
             when (page) {
+                DemoPage.NO_GRAVITY_BOX ->{
+                    DemoNoGravityScreen()
+                }
                 DemoPage.CURVED_SLIDER ->{
                     CurvedSliderScreen()
                 }

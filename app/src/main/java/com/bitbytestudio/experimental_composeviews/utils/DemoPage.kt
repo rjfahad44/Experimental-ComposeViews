@@ -1,6 +1,7 @@
 package com.bitbytestudio.experimental_composeviews.utils
 
 enum class DemoPage(val title: String) {
+    NO_GRAVITY_BOX("No Gravity Box"),
     CURVED_SLIDER("Curved Slider"),
     SHIMMER("Shimmer Effect"),
     MOVEABLE_BEE("Moveable Bee"),
@@ -14,6 +15,7 @@ enum class DemoPage(val title: String) {
 
     companion object {
         val pages = listOf(
+            NO_GRAVITY_BOX,
             CURVED_SLIDER,
             SHIMMER,
             MOVEABLE_BEE,
