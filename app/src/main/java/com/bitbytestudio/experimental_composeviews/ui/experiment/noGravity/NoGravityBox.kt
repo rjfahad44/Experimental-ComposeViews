@@ -48,10 +48,10 @@ data class PhysicsObject(
 @Composable
 fun NoGravityBox(
     modifier: Modifier = Modifier,
-    friction: Float = 0.98f,
+    friction: Float = 0.28f,
     restitution: Float = 0.7f,
     enableGyroscope: Boolean = true,
-    gyroscopeScale: Float = 50f,
+    gyroscopeScale: Float = 10f,
     content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
