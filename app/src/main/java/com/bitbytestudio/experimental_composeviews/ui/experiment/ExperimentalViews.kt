@@ -31,6 +31,7 @@ import com.bitbytestudio.experimental_composeviews.ui.experiment.curvedSlider.Cu
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djLightEffect.DJLightShowBox
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djTextEffect.DJLightingPerCharacterText
 import com.bitbytestudio.experimental_composeviews.ui.experiment.fullScreenRandomMoverBox.FullScreenRandomMoverBox
+import com.bitbytestudio.experimental_composeviews.ui.experiment.liquidGlassEffect.GlassDemo
 import com.bitbytestudio.experimental_composeviews.ui.experiment.noGravity.DemoNoGravityScreen
 import com.bitbytestudio.experimental_composeviews.ui.experiment.pagerViews.SmoothSwipeCardPager_1
 import com.bitbytestudio.experimental_composeviews.ui.experiment.partyEffect.PartyView
@@ -209,6 +210,10 @@ fun ExperimentalViews(
 
                 DemoPage.PARTY_EFFECT -> {
                     PartyView()
+                }
+
+                DemoPage.LIQUID_GLASS_EFFECT -> {
+                    GlassDemo()
                 }
             }
         }
