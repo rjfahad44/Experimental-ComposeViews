@@ -13,7 +13,8 @@ enum class DemoPage(val title: String) {
     STACK_PAGER("Fully Customizable Stack Pager"),
     PARTY_EFFECT("Party Effect"),
 
-    LIQUID_GLASS_EFFECT("Liquid Glass Effect");
+    LIQUID_GLASS_EFFECT("Liquid Glass Effect"),
+    PURCHASE_BUTTON("Purchase Button");
 
     companion object {
         val pages = listOf(
@@ -29,6 +30,7 @@ enum class DemoPage(val title: String) {
             STACK_PAGER,
             PARTY_EFFECT,
             LIQUID_GLASS_EFFECT,
+            PURCHASE_BUTTON
         )
         fun fromIndex(index: Int): DemoPage {
             val values = entries

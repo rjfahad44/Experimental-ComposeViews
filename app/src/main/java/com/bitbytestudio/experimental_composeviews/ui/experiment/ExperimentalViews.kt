@@ -30,6 +30,7 @@ import com.bitbytestudio.experimental_composeviews.R
 import com.bitbytestudio.experimental_composeviews.ui.experiment.curvedSlider.CurvedSliderScreen
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djLightEffect.DJLightShowBox
 import com.bitbytestudio.experimental_composeviews.ui.experiment.djTextEffect.DJLightingPerCharacterText
+import com.bitbytestudio.experimental_composeviews.ui.experiment.dragablePurchaseButton.PurchaseButton
 import com.bitbytestudio.experimental_composeviews.ui.experiment.fullScreenRandomMoverBox.FullScreenRandomMoverBox
 import com.bitbytestudio.experimental_composeviews.ui.experiment.liquidGlassEffect.GlassDemo
 import com.bitbytestudio.experimental_composeviews.ui.experiment.noGravity.DemoNoGravityScreen
@@ -214,6 +215,10 @@ fun ExperimentalViews(
 
                 DemoPage.LIQUID_GLASS_EFFECT -> {
                     GlassDemo()
+                }
+
+                DemoPage.PURCHASE_BUTTON -> {
+                    PurchaseButton()
                 }
             }
         }
